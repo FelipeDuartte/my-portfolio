@@ -1,9 +1,9 @@
 @media screen and (min-width: 800px) {
   .Felipe-Duarte {
     font-size: 6em;
+    font-weight: 900;
     color: transparent;
     -webkit-text-stroke: 2px #a6a6a6;
-    font-weight: 900;
   }
 
   p#presentation {
@@ -14,8 +14,15 @@
   span#icons-glt {
     font-size: 35px;
   }
+/* ==== SOBRE MIM ==== */
+.bio {
+ font-size: 1.3rem;
+}
+.about-text h3 {
+   font-size: 1.75rem;
+}
 
-  /* começo Projetos */
+  /* ==== PROJETOS ==== */
   .titulo-projetos {
     margin-top: 40px;
     font-size: 4em;
@@ -51,16 +58,8 @@
   .img-projeto {
     border-bottom-width: 4px;
   }
-  /* Fim Projetos */
 
-  /* começo competencias */
-  div > p.pcard {
-    width: 99%;
-    line-height: 25px;
-    font-size: 1em;
-    font-weight: bold;
-  }
-
+  /* ==== COMPETÊNCIAS ==== */
   .h1-competencia {
     font-size: 4em;
   }
@@ -69,7 +68,15 @@
     flex: 0 0 calc(33.333% - 20px);
     max-width: calc(33.333% - 20px);
   }
-  /* Fim competencias */
+
+  div > p.pcard {
+    width: 99%;
+    line-height: 25px;
+    font-size: 1em;
+    font-weight: bold;
+  }
+
+  /* ==== OUTROS ==== */
   .scroll-to-top.show {
     display: none;
   }
