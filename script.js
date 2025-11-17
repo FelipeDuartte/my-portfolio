@@ -44,10 +44,10 @@ document.addEventListener("DOMContentLoaded", () => {
       this.color = colors[Math.floor(Math.random() * colors.length)];
       this.speed = Math.random() * 0.08 + 0.03; // Velocidade reduzida
       this.alpha = Math.random() * 0.8 + 0.2;
-      this.distance = Math.random() * 1.5 + 1; // Distância reduzida
+      this.distance = Math.random() * 1.6 + 1; // Distância reduzida
       this.twinkleSpeed = Math.random() * 0.005 + 0.002; // Piscar mais lento
       this.angle = Math.random() * Math.PI * 2;
-      this.glowRadius = this.radius * 3; // Brilho reduzido
+      this.glowRadius = this.radius * 8; // Brilho reduzido
     }
 
     update() {
