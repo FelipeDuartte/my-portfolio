@@ -168,15 +168,16 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     reset() {
-      this.x = Math.random() * canvas.width + canvas.width * 0.2;
-      this.y = -50;
+      // Posição inicial mais centralizada
+      this.x = canvas.width * 0.6 + Math.random() * canvas.width * 0.4;
+      this.y = canvas.height * 0.2 + Math.random() * canvas.height * 0.3; // Começa mais no centro
       this.length = Math.random() * 250 + 200; // Cauda muito mais longa
       this.speed = Math.random() * 12 + 8;
       this.thickness = Math.random() * 4 + 3;
       this.opacity = Math.random() * 0.4 + 0.6;
       this.active = false;
       this.waitTime = Math.random() * 400 + 300;
-      this.angle = Math.random() * 0.3 + 0.3;
+      this.angle = Math.random() * 0.2 + 0.4; // Ângulo mais suave
       this.color = Math.random() > 0.5 
         ? { r: 255, g: 180, b: 50 } // Laranja/amarelo intenso
         : { r: 255, g: 100, b: 50 }; // Vermelho/laranja
