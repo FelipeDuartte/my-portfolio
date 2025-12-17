@@ -1,0 +1,80 @@
+/* ========== CONTATO ========== */
+.contato-section {
+  padding: 60px 20px;
+  border-top: 3px solid;
+  border-image: linear-gradient(to right, #1528593f, transparent 40%) 1;
+  color: #bfbfbf;
+}
+
+.contato-section.hidden {
+  opacity: 0;
+  transform: translateY(20px);
+  filter: blur(8px);
+  transition: all 0.9s ease-out;
+}
+
+.contato-section.show {
+  opacity: 1;
+  transform: translateY(0);
+  filter: blur(0);
+}
+
+.h1-contato {
+  color: transparent;
+  -webkit-text-stroke: 1.8px gray;
+  font-weight: 900;
+  font-size: 3em;
+  margin-bottom: 30px;
+}
+
+.contato-container {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  align-items: center;
+}
+
+.form-contato {
+  gap: 15px;
+  width: 100%;
+  max-width: 500px;
+}
+
+.form-contato input,
+.form-contato textarea {
+  width: 100%;
+  padding: 12px 15px;
+  border: none;
+  border-radius: 8px;
+  background-color: #1b1b1b;
+  color: #f8f9fa;
+  font-size: 1em;
+  transition: box-shadow 0.3s ease;
+}
+
+.form-contato input:focus,
+.form-contato textarea:focus {
+  outline: none;
+  box-shadow: 0 0 10px #007bff;
+}
+
+.form-contato button {
+  background-color: #152859;
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.form-contato button:hover {
+  background-color: #192d75;
+}
+
+.info-contato p {
+  margin: 5px 0;
+  font-size: 1.1em;
+}
+/* ========== /CONTATO ========== */

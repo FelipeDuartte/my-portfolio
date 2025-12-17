@@ -1,0 +1,203 @@
+/* ========== COMPETÊNCIAS ========== */
+#competencias {
+  padding: 80px 0;
+  position: relative;
+  overflow: hidden;
+}
+
+#competencias::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><circle cx="20" cy="20" r="1" fill="rgba(255,255,255,0.3)"/><circle cx="50" cy="50" r="1" fill="rgba(255,255,255,0.3)"/><circle cx="80" cy="30" r="1" fill="rgba(255,255,255,0.3)"/></svg>');
+  opacity: 0.3;
+}
+
+.h1-competencia {
+  color: transparent;
+  -webkit-text-stroke: 1.5px #4f46e5;
+  text-shadow: 0 0 10px rgba(79, 70, 229, 0.3);
+  font-weight: 900;
+  font-size: 2.8rem;
+  letter-spacing: 3px;
+  margin-bottom: 50px;
+  position: relative;
+  display: inline-block;
+}
+
+.h1-competencia::after {
+  content: "";
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 3px;
+  background: linear-gradient(90deg, #4f46e5, transparent);
+}
+
+.card-tech {
+  background: rgba(13, 26, 47, 0.7);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(96, 165, 250, 0.1);
+  border-radius: 16px;
+  transition: all 0.4s ease;
+  position: relative;
+  overflow: hidden;
+  height: 100%;
+}
+
+.card-glowing-border {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 16px;
+  background: linear-gradient(
+    135deg,
+    rgba(79, 70, 229, 0.3),
+    rgba(96, 165, 250, 0.1)
+  );
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.card-tech:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+  border-color: rgba(96, 165, 250, 0.3);
+}
+
+.card-tech:hover .card-glowing-border {
+  opacity: 1;
+}
+
+.tech-icon-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.tech-icon-wrapper::before {
+  content: "";
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  right: -5px;
+  bottom: -5px;
+  background: radial-gradient(circle, rgba(79, 70, 229, 0.4), transparent 70%);
+  border-radius: 50%;
+  z-index: 0;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.card-tech:hover .tech-icon-wrapper::before {
+  opacity: 1;
+}
+
+.img-card {
+  height: 60px;
+  width: 60px;
+  margin-bottom: 15px;
+  filter: drop-shadow(0 0 5px rgba(79, 70, 229, 0.5));
+  transition: transform 0.3s ease;
+  position: relative;
+  z-index: 1;
+}
+
+.card-tech:hover .img-card {
+  transform: scale(1.1);
+}
+
+.pcard {
+  font-size: 0.95rem;
+  color: #e5e7eb;
+  margin: 15px 0 25px;
+  line-height: 1.6;
+}
+
+.btn-certificado {
+  background: linear-gradient(135deg, #4f46e5 0%, #6366f1 100%);
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(79, 70, 229, 0.3);
+}
+
+.btn-certificado::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
+  transition: all 0.6s ease;
+}
+
+.btn-certificado:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(79, 70, 229, 0.4);
+}
+
+.btn-certificado:hover::before {
+  left: 100%;
+}
+
+.btn-icon {
+  display: flex;
+  align-items: center;
+}
+
+/* ========== /Responsive Desktop ========== */
+@media screen and (min-width: 800px) {
+ .h1-competencia {
+    font-size: 4em;
+  }
+
+  #competencias .col {
+    flex: 0 0 calc(33.333% - 20px);
+    max-width: calc(33.333% - 20px);
+  }
+
+  div > p.pcard {
+    width: 99%;
+    line-height: 25px;
+    font-size: 1em;
+    font-weight: bold;
+  }
+}
+/* ========== /Responsive tablet ========== */
+@media screen and (min-width: 800px) and (max-width: 1200px) {
+ #competencias .col {
+    flex: 0 0 calc(50% - 20px);
+    max-width: calc(50% - 20px);
+  }
+
+  .h1-competencia {
+    font-size: 3em;
+  }
+}
+
+/* ========== /COMPETÊNCIAS ========== */

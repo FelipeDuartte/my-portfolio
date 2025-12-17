@@ -1,0 +1,39 @@
+/* ========== SCROLL TO TOP & FOOTER ========== */
+.scroll-to-top {
+  position: fixed;
+  bottom: 40px;
+  left: 40px;
+  background-color: #141625;
+  padding: 10px 15px;
+  border-radius: 30%;
+  font-size: 24px;
+  text-decoration: none;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  display: none;
+  z-index: 999;
+  transition: background-color 0.3s;
+}
+
+.scroll-to-top.show {
+  display: block;
+  opacity: 1;
+}
+
+.scroll-to-top:hover {
+  background-color: #1b1f3b;
+}
+
+.footer {
+  background: radial-gradient(ellipse at bottom, #0d1a2f67 0%, #000000 100%);
+  color: #bfbfbf;
+  padding: 20px 10px;
+  font-size: 0.9em;
+  border-top: 2px solid;
+  border-image: linear-gradient(to right, #1528593f, transparent) 1;
+}
+
+.footer strong {
+  color: #f39c12;
+  font-weight: bold;
+}
+/* ========== /SCROLL TO TOP & FOOTER ========== */
