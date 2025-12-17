@@ -40,4 +40,16 @@
   .footer {
     font-size: 1em;
   }
+
+  .titulo-projetos {
+    font-size: 2.2em;
+  }
+  
+  .subtitulo-projetos {
+    font-size: 1.8rem;
+  }
+  
+  .img-projeto {
+    height: 200px;
+  }
 }
