@@ -26,7 +26,7 @@
     <link rel="stylesheet" href="estilo/style.css" />
     <link rel="stylesheet" href="estilo/desktop.css" />
     <link rel="stylesheet" href="estilo/tablet.css" />
-    <link rel="stylesheet" href="estilo/smallScreen.css">
+    <link rel="stylesheet" href="estilo/smallScreen.css" />
     <link rel="shortcut icon" href="imagens/favicon.png" type="image/x-icon" />
     <title>Portfolio</title>
   </head>
@@ -47,17 +47,15 @@
           <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav justify-content-center">
               <li class="nav-item">
-                <a class="nav-link text-white me-4" href="#principal"
-                  >Home</a
-                >
+                <a class="nav-link text-white me-4" href="#principal">Home</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link text-white me-4" href="#sobre-mim"
-                  >About</a
-                >
+                <a class="nav-link text-white me-4" href="#sobre-mim">About</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link text-white me-4" href="#projetos">Projects</a>
+                <a class="nav-link text-white me-4" href="#projetos"
+                  >Projects</a
+                >
               </li>
               <li class="nav-item">
                 <a class="nav-link text-white me-4" href="#contato">Contact</a>
@@ -78,11 +76,15 @@
           >
             <div>
               <p
-                class="d-flex m-0 position-relative justify-content-center text-white meu-nome-e">
+                class="d-flex m-0 position-relative justify-content-center text-white meu-nome-e"
+              >
                 <span class="background-opa"
-                  >Hey! <span class="bi bi-emoji-wink-fill"></span></span>, my name is
+                  >Hey! <span class="bi bi-emoji-wink-fill"></span></span
+                >, my name is
               </p>
-              <div><h1 class="col-12 mb-4 Felipe-Duarte">Felipe Duarte</h1></div>
+              <div>
+                <h1 class="col-12 mb-4 Felipe-Duarte">Felipe Duarte</h1>
+              </div>
 
               <nav class="col d-flex align-items-center justify-content-center">
                 <a
@@ -126,19 +128,35 @@
       <section class="about-me" id="sobre-mim">
         <div class="about-me-container">
           <div class="section-header text-center">
-            <p class="section-subtitle text-white fw-bold m-0 hidden">find out more</p>
+            <p class="section-subtitle text-white fw-bold m-0 hidden">
+              find out more
+            </p>
             <h2 class="section-title fw-bold hidden">About Me</h2>
           </div>
 
-          <div class="about-content d-flex justify-content-center align-items-start hidden">
+          <div
+            class="about-content d-flex justify-content-center align-items-start hidden"
+          >
             <div class="about-image text-center">
-              <img src="imagens/my-foto.png" alt="Felipe Duarte" class="profile-img" />
+              <img
+                src="imagens/my-foto.png"
+                alt="Felipe Duarte"
+                class="profile-img"
+              />
             </div>
 
             <div class="about-text text-left">
-              <h3>Hello, my name is <span class="highlight fw-bold">Felipe Duarte!</span></h3>
+              <h3>
+                Hello, my name is
+                <span class="highlight fw-bold">Felipe Duarte!</span>
+              </h3>
               <p class="bio">
-                Hello, I'm Felipe, 19 years old, a developer in continuous learning. I am interested in both front-end and back-end work, exploring different areas to become a more complete professional. I approach every project as an opportunity to grow, applying creativity, dedication and logic to turn ideas into functional, well-structured digital solutions.
+                Hello, I'm Felipe, 19 years old, a developer in continuous
+                learning. I am interested in both front-end and back-end work,
+                exploring different areas to become a more complete
+                professional. I approach every project as an opportunity to
+                grow, applying creativity, dedication and logic to turn ideas
+                into functional, well-structured digital solutions.
               </p>
 
               <!-- Services section -->
@@ -151,7 +169,10 @@
                       <i class="bi bi-laptop"></i>
                     </div>
                     <h4>Websites & Applications</h4>
-                    <p>Landing pages, corporate websites and custom web applications</p>
+                    <p>
+                      Landing pages, corporate websites and custom web
+                      applications
+                    </p>
                   </div>
 
                   <div class="service-card">
@@ -159,7 +180,10 @@
                       <i class="bi bi-phone"></i>
                     </div>
                     <h4>Automation</h4>
-                    <p>design and implement automated solutions that optimize workflows, save time, and improve business productivity.</p>
+                    <p>
+                      design and implement automated solutions that optimize
+                      workflows, save time, and improve business productivity.
+                    </p>
                   </div>
 
                   <div class="service-card">
@@ -167,7 +191,12 @@
                       <i class="bi bi-gear"></i>
                     </div>
                     <h4>Maintenance</h4>
-                    <p>Complete maintenance services including system, plugin, and security updates, layout bug fixes, performance optimization with backups, and continuous monitoring and support</p>
+                    <p>
+                      Complete maintenance services including system, plugin,
+                      and security updates, layout bug fixes, performance
+                      optimization with backups, and continuous monitoring and
+                      support
+                    </p>
                   </div>
 
                   <div class="service-card">
@@ -183,7 +212,10 @@
                       <i class="bi bi-search"></i>
                     </div>
                     <h4>Integration between Systems</h4>
-                    <p>Connecting different systems to ensure seamless data flow, efficiency, and reliable communication.</p>
+                    <p>
+                      Connecting different systems to ensure seamless data flow,
+                      efficiency, and reliable communication.
+                    </p>
                   </div>
                 </div>
 
@@ -200,9 +232,12 @@
       </section>
       <!-- Projects -->
       <section class="container py-5 hidden" id="projetos">
-        <h1 class="titulo-projetos fw-bold text-center">
-          <i class="bi bi-rocket-takeoff"></i> Projects
-        </h1>
+        <div class="DivTituloProjetos">
+          <h1 class="titulo-projetos fw-bold text-center">
+            <i class="bi bi-rocket-takeoff"></i> Projects
+          </h1>
+        </div>
+
         <!-- Front-end Projects -->
         <h2 class="subtitulo-projetos fw-bold text-center mt-2 mb-4">
           Front-end Projects
@@ -213,7 +248,10 @@
             <div class="card-projeto">
               <div class="card-body p-0 d-flex flex-column">
                 <h2 class="card-titulo p-3 text-center">JornadaDev</h2>
-                <a href="https://felipeduartte.github.io/trilha-dev/" target="_blank">
+                <a
+                  href="https://felipeduartte.github.io/trilha-dev/"
+                  target="_blank"
+                >
                   <img
                     src="imagens/page-trilha.png"
                     class="img-projeto"
@@ -221,21 +259,23 @@
                   />
                 </a>
                 <div class="legenda-projeto flex-grow-1">
-                  <p>
-                    Page designed to help developers who are starting out.
-                  </p>
+                  <p>Page designed to help developers who are starting out.</p>
                   <ul class="mt-2 ps-4" style="list-style-type: none">
                     <li>
-                      <i class="bi bi-check-circle-fill me-2"></i> Organizes study paths for web development
+                      <i class="bi bi-check-circle-fill me-2"></i> Step-by-step
+                      learning platform
                     </li>
                     <li>
-                      <i class="bi bi-check-circle-fill me-2"></i> Applies UX and clean code concepts
+                      <i class="bi bi-check-circle-fill me-2"></i> Website guide
+                      for programming beginners
                     </li>
                     <li>
-                      <i class="bi bi-check-circle-fill me-2"></i> Intuitive navigation
+                      <i class="bi bi-check-circle-fill me-2"></i> Intuitive
+                      navigation
                     </li>
                     <li>
-                      <i class="bi bi-check-circle-fill me-2"></i> Helps beginners
+                      <i class="bi bi-check-circle-fill me-2"></i> Focus on
+                      programming fundamentals
                     </li>
                   </ul>
                   <div class="tecnologias">
@@ -275,16 +315,20 @@
                   <p>Link landing page for clients.</p>
                   <ul class="mt-2 ps-4" style="list-style-type: none">
                     <li>
-                      <i class="bi bi-check-circle-fill me-2"></i> Mobile-first design
+                      <i class="bi bi-check-circle-fill me-2"></i> Mobile-first
+                      design
                     </li>
                     <li>
-                      <i class="bi bi-check-circle-fill me-2"></i> Intuitive navigation
+                      <i class="bi bi-check-circle-fill me-2"></i> Intuitive
+                      navigation
                     </li>
                     <li>
-                      <i class="bi bi-check-circle-fill me-2"></i> Multiple social networks
+                      <i class="bi bi-check-circle-fill me-2"></i> Multiple
+                      social networks
                     </li>
                     <li>
-                      <i class="bi bi-check-circle-fill me-2"></i> Easy navigation
+                      <i class="bi bi-check-circle-fill me-2"></i> Easy
+                      navigation
                     </li>
                   </ul>
                   <div class="tecnologias">
@@ -306,38 +350,42 @@
             </div>
           </div>
         </div>
-        <!-- Back-end Projects -->
+        <!-- Full-Stack Projects -->
         <h2 class="subtitulo-projetos fw-bold text-center mt-5 mb-4">
-          Back-end Projects
+          Full-Stack Projects
         </h2>
         <div class="row g-4 justify-content-center">
-              <div class="col-lg-6 col-md-10 hidden-competencias">
+          <div class="col-lg-6 col-md-10 hidden-competencias">
             <div class="card-projeto">
               <div class="card-body p-0 d-flex flex-column">
-                <h2 class="card-titulo p-3 text-center">beverage distributor</h2>
+                <h2 class="card-titulo p-3 text-center">
+                  beverage distributor
+                </h2>
                 <a href="#" target="_blank">
                   <img
-                    src="imagens/projects-development.png"
+                    src="imagens/projectBebidas.png"
                     class="img-projeto"
-                    alt="Routine project"
+                    alt="beverage project"
                   />
                 </a>
                 <div class="legenda-projeto flex-grow-1">
-                  <p>
-                    Website created for a beverage distributor.
-                  </p>
+                  <p>Website created for a beverage distributor.</p>
                   <ul class="mt-2 ps-4" style="list-style-type: none">
                     <li>
-                      <i class="bi bi-check-circle-fill me-2"></i> Product Catalog
+                      <i class="bi bi-check-circle-fill me-2"></i> Product
+                      Catalog
                     </li>
                     <li>
-                      <i class="bi bi-check-circle-fill me-2"></i> Shopping cart and checkout
+                      <i class="bi bi-check-circle-fill me-2"></i> Shopping cart
+                      and checkout
                     </li>
                     <li>
-                      <i class="bi bi-check-circle-fill me-2"></i> Promotions and Highlights
+                      <i class="bi bi-check-circle-fill me-2"></i> Promotions
+                      and Highlights
                     </li>
                     <li>
-                      <i class="bi bi-check-circle-fill me-2"></i> Authentication and User
+                      <i class="bi bi-check-circle-fill me-2"></i>
+                      Authentication and User
                     </li>
                   </ul>
                   <div class="tecnologias">
@@ -348,7 +396,7 @@
                       ><i class="bi bi-filetype-css me-1"></i> CSS3</span
                     >
                     <span class="tecnologia-badge"
-                      ><i class="bi bi-filetype-js me-1"></i> React</span
+                      ><i class="bi bi-filetype-jsx me-1"></i> React</span
                     >
                     <span class="tecnologia-badge"
                       ><i class="bi bi-palette-fill me-1"></i> Bootstrap</span
@@ -358,12 +406,14 @@
               </div>
             </div>
           </div>
-          <div class="col-12 text-center">
-            <p class="text-secondary">
-              More back-end projects coming soon!
-            </p>
-          </div>
-        </div>    
+        </div>
+        <!-- Back-end Projects -->
+        <h2 class="subtitulo-projetos fw-bold text-center mt-5 mb-4">
+          Back-end Projects
+        </h2>
+        <div class="col-12 text-center">
+          <p class="text-secondary">More back-end projects coming soon!</p>
+        </div>
       </section>
       <!-- skills -->
       <section class="container mt-5 text-center" id="competencias">
@@ -387,7 +437,8 @@
                 </div>
                 <h6 class="fw-bold fs-5 mt-2 text-secondary">JavaScript</h6>
                 <p class="pcard">
-                  Essential language for modern web development, creating interactivity in both browser and server environments.
+                  Essential language for modern web development, creating
+                  interactivity in both browser and server environments.
                 </p>
               </div>
             </div>
@@ -407,7 +458,8 @@
                 </div>
                 <h6 class="fw-bold fs-5 mt-2 text-secondary">English</h6>
                 <p class="pcard">
-                  Important for reading documentation, communicating and advancing in tech.
+                  Important for reading documentation, communicating and
+                  advancing in tech.
                 </p>
               </div>
             </div>
@@ -427,7 +479,8 @@
                 </div>
                 <h6 class="fw-bold fs-5 mt-2 text-secondary">HTML</h6>
                 <p class="pcard">
-                  Core technologies for building and styling web pages and interfaces.
+                  Core technologies for building and styling web pages and
+                  interfaces.
                 </p>
               </div>
             </div>
@@ -447,7 +500,8 @@
                 </div>
                 <h6 class="fw-bold fs-5 mt-2 text-secondary">CSS</h6>
                 <p class="pcard">
-                  Core technologies for building and styling web pages and interfaces.
+                  Core technologies for building and styling web pages and
+                  interfaces.
                 </p>
               </div>
             </div>
@@ -458,16 +512,13 @@
               <div class="card-glowing-border"></div>
               <div class="card-body p-3">
                 <div class="tech-icon-wrapper">
-                  <img
-                    src="imagens/git.svg"
-                    alt="Git Icon"
-                    class="img-card"
-                  />
+                  <img src="imagens/git.svg" alt="Git Icon" class="img-card" />
                   <div class="particles"></div>
                 </div>
                 <h6 class="fw-bold fs-5 mt-2 text-secondary">Git/GitHub</h6>
                 <p class="pcard">
-                  Git records and manages file changes, enabling versioning, comparing, reverting and merging across teams.
+                  Git records and manages file changes, enabling versioning,
+                  comparing, reverting and merging across teams.
                 </p>
               </div>
             </div>
@@ -487,7 +538,8 @@
                 </div>
                 <h6 class="fw-bold fs-5 mt-2 text-secondary">Node.js</h6>
                 <p class="pcard">
-                  Runtime for building fast and scalable server-side applications with JavaScript.
+                  Runtime for building fast and scalable server-side
+                  applications with JavaScript.
                 </p>
               </div>
             </div>
@@ -527,7 +579,8 @@
                 </div>
                 <h6 class="fw-bold fs-5 mt-2 text-secondary">Bootstrap</h6>
                 <p class="pcard">
-                  CSS framework that speeds up responsive design and UI development.
+                  CSS framework that speeds up responsive design and UI
+                  development.
                 </p>
               </div>
             </div>
@@ -564,7 +617,7 @@
               placeholder="Your message..."
               required
             ></textarea>
-            <button type="submit" onclick="EnviarContato()">Send</button>
+            <button type="submit">Send</button>
           </form>
 
           <div class="info-contato">
