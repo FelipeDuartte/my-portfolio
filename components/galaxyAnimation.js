@@ -5,7 +5,7 @@ export async function initGalaxyAnimation() {
   const canvas = document.getElementById("galaxyCanvas");
   if (!canvas) return;
 
-  const ctx = canvas.getContext("2d");
+  const ctx = canvas.getContext("2d", { alpha: true });
   let animationId;
   let isVisible = true;
 
@@ -15,29 +15,28 @@ export async function initGalaxyAnimation() {
   function resize() {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
+    
+    // Limpar cache de gradientes ao redimensionar
+    Meteor.clearGradientCache();
   }
+  
   resize();
   window.addEventListener("resize", resize);
 
   const isMobile = window.innerWidth < 768;
 
-  //  ESTRELAS
+  // ⭐ ESTRELAS
   const stars = Array.from(
     { length: isMobile ? 80 : 160 },
     () => new Star(canvas)
   );
 
-  // ☄ METEOROS com logos de tecnologias
+  // ☄ METEOROS - Um de cada vez com delays escalonados
   const meteors = isMobile
-    ? [
-        new Meteor(canvas, ctx, 0),
-        new Meteor(canvas, ctx, 1)
-      ]
+    ? [new Meteor(canvas, ctx, 0)]
     : [
         new Meteor(canvas, ctx, 0),
-        new Meteor(canvas, ctx, 1),
-        new Meteor(canvas, ctx, 2),
-        new Meteor(canvas, ctx, 3)
+        new Meteor(canvas, ctx, 1)
       ];
 
   // FPS CONTROLADO
@@ -57,42 +56,50 @@ export async function initGalaxyAnimation() {
 
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-    // ⭐ estrelas
+    // ⭐ Estrelas
     stars.forEach(star => {
       star.update(time);
       star.draw(ctx);
     });
 
-    // ☄ meteoros
+    // ☄ Meteoros - apenas os visíveis
     meteors.forEach(meteor => {
       meteor.update(time);
-      meteor.draw(ctx);
+      if (meteor.isVisible()) {
+        meteor.draw();
+      }
     });
 
     animationId = requestAnimationFrame(animate);
   }
 
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      isVisible = entry.isIntersecting;
+  // Observador de visibilidade para pausar quando fora da tela
+  const observer = new IntersectionObserver(
+    entries => {
+      entries.forEach(entry => {
+        isVisible = entry.isIntersecting;
 
-      if (isVisible) {
-        lastTime = performance.now();
-        animate(lastTime);
-      } else {
-        cancelAnimationFrame(animationId);
-      }
-    });
-  });
+        if (isVisible) {
+          lastTime = performance.now();
+          animate(lastTime);
+        } else {
+          cancelAnimationFrame(animationId);
+        }
+      });
+    },
+    { threshold: 0.1 }
+  );
 
   observer.observe(canvas);
-  animate(0);
+  animate(performance.now());
 
+  // Cleanup function
   return {
     destroy() {
       cancelAnimationFrame(animationId);
       observer.disconnect();
       window.removeEventListener("resize", resize);
+      Meteor.clearGradientCache();
     }
   };
 }

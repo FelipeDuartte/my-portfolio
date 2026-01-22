@@ -1,6 +1,6 @@
 export class Meteor {
-  // Logos das tecnologias (URLs públicas)
-  static techLogos = [
+  // Constantes da classe
+  static TECH_LOGOS = [
     {
       name: 'React',
       url: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg',
@@ -23,142 +23,232 @@ export class Meteor {
     }
   ];
 
+  // Configurações de animação
+  static CONFIG = {
+    ICON_SIZE: 42,
+    TRAIL_LENGTH: 140,
+    BASE_SPEED: 900,
+    TRAIL_ANGLE: 0.35,
+    FADE_SPEED: 0.6,
+    LINE_WIDTH: 2.5,
+    SHADOW_BLUR: 10,
+    ICON_SHADOW_BLUR: 25,
+    MIN_WAIT_TIME: 4000,
+    MAX_WAIT_TIME: 8000,
+    INITIAL_DELAY_MULTIPLIER: 4000
+  };
+
   static imagesLoaded = false;
-  static loadedImages = {};
-  static gradientCache = new Map(); // Cache de gradientes
+  static loadedImages = new Map();
+  static gradientCache = new Map();
 
-  // Método estático para pré-carregar todas as imagens
+  /**
+   * Pré-carrega todas as imagens dos logos
+   * @returns {Promise<void>}
+   */
   static async preloadImages() {
-    if (this.imagesLoaded) return Promise.resolve();
+    if (this.imagesLoaded) return;
 
-    const promises = this.techLogos.map(tech => {
-      return new Promise((resolve) => {
-        const img = new Image();
-        img.crossOrigin = 'anonymous';
-        img.onload = () => {
-          this.loadedImages[tech.name] = img;
-          resolve();
-        };
-        img.onerror = () => {
-          console.warn(`Falha ao carregar imagem: ${tech.name}`);
-          resolve();
-        };
-        img.src = tech.url;
-      });
-    });
+    const imagePromises = this.TECH_LOGOS.map(tech => 
+      this.#loadImage(tech)
+    );
 
-    await Promise.all(promises);
+    await Promise.all(imagePromises);
     this.imagesLoaded = true;
+  }
+
+  /**
+   * Carrega uma única imagem
+   * @private
+   */
+  static #loadImage(tech) {
+    return new Promise((resolve) => {
+      const img = new Image();
+      img.crossOrigin = 'anonymous';
+      
+      img.onload = () => {
+        this.loadedImages.set(tech.name, img);
+        resolve();
+      };
+      
+      img.onerror = () => {
+        console.warn(`Failed to load image: ${tech.name}`);
+        resolve();
+      };
+      
+      img.src = tech.url;
+    });
+  }
+
+  /**
+   * Limpa o cache de gradientes (útil para redimensionamento)
+   */
+  static clearGradientCache() {
+    this.gradientCache.clear();
   }
 
   constructor(canvas, ctx, delayIndex = 0) {
     this.canvas = canvas;
     this.ctx = ctx;
-    this.baseDelay = delayIndex * 3000;
-    this.selectRandomTech();
-    this.reset(true);
+    this.baseDelay = delayIndex * Meteor.CONFIG.INITIAL_DELAY_MULTIPLIER;
     
-    // Pre-calcular valores constantes
-    this.halfIconSize = 21; // iconSize / 2
-    this.lengthAngle = 0; // Será calculado no reset
+    // Valores pré-calculados
+    this.halfIconSize = Meteor.CONFIG.ICON_SIZE / 2;
+    this.trailEndX = Meteor.CONFIG.TRAIL_LENGTH;
+    this.trailEndY = -Meteor.CONFIG.TRAIL_LENGTH * Meteor.CONFIG.TRAIL_ANGLE;
+    
+    this.#selectRandomTech();
+    this.reset(true);
   }
 
-  selectRandomTech() {
-    const tech = Meteor.techLogos[Math.floor(Math.random() * Meteor.techLogos.length)];
-    this.tech = tech;
-    this.image = Meteor.loadedImages[tech.name];
+  /**
+   * Seleciona uma tecnologia aleatória
+   * @private
+   */
+  #selectRandomTech() {
+    const randomIndex = Math.floor(Math.random() * Meteor.TECH_LOGOS.length);
+    this.tech = Meteor.TECH_LOGOS[randomIndex];
+    this.image = Meteor.loadedImages.get(this.tech.name);
   }
 
+  /**
+   * Obtém ou cria um gradiente do cache
+   * @private
+   */
+  #getGradient() {
+    const key = this.tech.name;
+    
+    if (!Meteor.gradientCache.has(key)) {
+      const gradient = this.ctx.createLinearGradient(
+        0, 0, 
+        this.trailEndX, 
+        this.trailEndY
+      );
+      
+      gradient.addColorStop(0, this.tech.color);
+      gradient.addColorStop(0.5, 'rgba(255, 255, 255, 0.5)');
+      gradient.addColorStop(1, 'rgba(255, 255, 255, 0)');
+      
+      Meteor.gradientCache.set(key, gradient);
+    }
+    
+    return Meteor.gradientCache.get(key);
+  }
+
+  /**
+   * Reseta a posição e estado do meteoro
+   * @param {boolean} initial - Se é o reset inicial
+   */
   reset(initial = false) {
+    // Posição inicial fora da tela
     this.x = this.canvas.width + Math.random() * 200;
     this.y = this.canvas.height * Math.random() * 0.4;
-
-    this.length = 140;
-    this.speed = 900;
-    this.angle = 0.35;
-    
-    // Pre-calcular multiplicações constantes
-    this.lengthAngle = this.length * this.angle;
 
     this.alpha = 1;
     this.active = false;
 
-    this.waitTime = initial
-      ? this.baseDelay + 1000
-      : 3000 + Math.random() * 4000;
+    // Tempo de espera antes de aparecer - aumentado para evitar sobreposição
+    this.waitTime = initial 
+      ? this.baseDelay + 2000
+      : Meteor.CONFIG.MIN_WAIT_TIME + Math.random() * (Meteor.CONFIG.MAX_WAIT_TIME - Meteor.CONFIG.MIN_WAIT_TIME) + 2000;
 
     this.lastTime = performance.now();
-    this.selectRandomTech();
+    this.#selectRandomTech();
   }
 
+  /**
+   * Atualiza a posição e estado do meteoro
+   * @param {number} time - Timestamp atual
+   */
   update(time) {
-    const delta = (time - this.lastTime) * 0.001; // Divisão por constante
+    const deltaTime = (time - this.lastTime) / 1000;
     this.lastTime = time;
 
     if (!this.active) {
-      this.waitTime -= delta * 1000;
+      this.waitTime -= deltaTime * 1000;
       if (this.waitTime <= 0) {
         this.active = true;
       }
       return;
     }
 
-    const speedDelta = this.speed * delta;
-    this.x -= speedDelta;
-    this.y += speedDelta * this.angle;
-    this.alpha -= delta * 0.6;
+    // Atualizar posição
+    const movement = Meteor.CONFIG.BASE_SPEED * deltaTime;
+    this.x -= movement;
+    this.y += movement * Meteor.CONFIG.TRAIL_ANGLE;
 
-    // Verificação simplificada
-    if (this.alpha <= 0 || this.x < -this.length) {
+    // Atualizar opacidade
+    this.alpha -= deltaTime * Meteor.CONFIG.FADE_SPEED;
+
+    // Verificar se precisa resetar
+    if (this.alpha <= 0 || this.x < -Meteor.CONFIG.TRAIL_LENGTH) {
       this.reset();
     }
   }
 
-  draw(ctx) {
-    if (!this.active) return;
+  /**
+   * Renderiza o meteoro no canvas
+   */
+  draw() {
+    if (!this.active || this.alpha <= 0) return;
 
-    const alpha = this.alpha;
+    const ctx = this.ctx;
     
     ctx.save();
-    ctx.globalAlpha = alpha;
+    ctx.globalAlpha = this.alpha;
+    ctx.translate(this.x, this.y);
 
-    // Criar ou reutilizar gradiente do cache
-    const gradKey = `${this.tech.name}`;
-    let gradient = Meteor.gradientCache.get(gradKey);
-    
-    if (!gradient) {
-      gradient = ctx.createLinearGradient(0, 0, this.length, -this.lengthAngle);
-      gradient.addColorStop(0, this.tech.color);
-      gradient.addColorStop(0.5, 'rgba(255, 255, 255, 0.5)');
-      gradient.addColorStop(1, 'rgba(255, 255, 255, 0)');
-      Meteor.gradientCache.set(gradKey, gradient);
+    // Desenhar trilha
+    this.#drawTrail(ctx);
+
+    // Desenhar ícone
+    if (this.image && Meteor.imagesLoaded) {
+      this.#drawIcon(ctx);
     }
 
-    // Aplicar transformação uma vez
-    ctx.translate(this.x, this.y);
-    
-    // Trilha
-    ctx.strokeStyle = gradient;
-    ctx.lineWidth = 2.5;
+    ctx.restore();
+  }
+
+  /**
+   * Desenha a trilha do meteoro
+   * @private
+   */
+  #drawTrail(ctx) {
+    ctx.strokeStyle = this.#getGradient();
+    ctx.lineWidth = Meteor.CONFIG.LINE_WIDTH;
     ctx.lineCap = 'round';
-    ctx.shadowBlur = 10;
+    ctx.shadowBlur = Meteor.CONFIG.SHADOW_BLUR;
     ctx.shadowColor = this.tech.color;
 
     ctx.beginPath();
     ctx.moveTo(0, 0);
-    ctx.lineTo(this.length, -this.lengthAngle);
+    ctx.lineTo(this.trailEndX, this.trailEndY);
     ctx.stroke();
+  }
 
-    // Logo (se carregado)
-    if (this.image && Meteor.imagesLoaded) {
-      ctx.shadowBlur = 25;
-      ctx.shadowColor = 'rgba(255, 255, 255, 1)';
-      
-      // Desenhar 2 vezes em vez de 3 (performance vs qualidade)
-      ctx.drawImage(this.image, -this.halfIconSize, -this.halfIconSize, 42, 42);
-      ctx.drawImage(this.image, -this.halfIconSize, -this.halfIconSize, 42, 42);
-    }
+  /**
+   * Desenha o ícone do meteoro
+   * @private
+   */
+  #drawIcon(ctx) {
+    ctx.shadowBlur = Meteor.CONFIG.ICON_SHADOW_BLUR;
+    ctx.shadowColor = 'rgba(255, 255, 255, 1)';
+    
+    // Desenhar ícone duas vezes para efeito de brilho
+    const size = Meteor.CONFIG.ICON_SIZE;
+    const offset = -this.halfIconSize;
+    
+    ctx.drawImage(this.image, offset, offset, size, size);
+    ctx.drawImage(this.image, offset, offset, size, size);
+  }
 
-    ctx.restore();
+  /**
+   * Verifica se o meteoro está visível na tela
+   * @returns {boolean}
+   */
+  isVisible() {
+    return this.active && 
+           this.x > -Meteor.CONFIG.TRAIL_LENGTH && 
+           this.x < this.canvas.width + 200;
   }
 }

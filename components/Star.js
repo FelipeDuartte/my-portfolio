@@ -16,7 +16,7 @@ export class Star {
     this.x = Math.random() * this.canvas.width;
     this.y = Math.random() * this.canvas.height;
 
-    // ⭐ Estrelas continuam pequenas
+    // Estrelas continuam pequenas
     this.radius = Math.random() * 0.4 + 0.2;
 
     // Movimento suave
@@ -43,7 +43,7 @@ export class Star {
   draw(ctx) {
     ctx.save();
 
-    // ✨ Glow maior, mas estrela ainda pequena
+    //  Glow maior, mas estrela ainda pequena
     const glow = this.radius * 3.5;
 
     const gradient = ctx.createRadialGradient(
