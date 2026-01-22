@@ -1,13 +1,16 @@
 import { Star } from "./Star.js";
 import { Meteor } from "./Meteor.js";
 
-export function initGalaxyAnimation() {
+export async function initGalaxyAnimation() {
   const canvas = document.getElementById("galaxyCanvas");
   if (!canvas) return;
 
   const ctx = canvas.getContext("2d");
   let animationId;
   let isVisible = true;
+
+  // Pré-carregar imagens dos meteoros
+  await Meteor.preloadImages();
 
   function resize() {
     canvas.width = window.innerWidth;
@@ -18,18 +21,23 @@ export function initGalaxyAnimation() {
 
   const isMobile = window.innerWidth < 768;
 
-  // ⭐ ESTRELAS
+  //  ESTRELAS
   const stars = Array.from(
     { length: isMobile ? 80 : 160 },
     () => new Star(canvas)
   );
 
-  // ☄ METEOROS (controlados)
+  // ☄ METEOROS com logos de tecnologias
   const meteors = isMobile
-    ? [new Meteor(canvas, ctx, 0)]
-    : [
+    ? [
         new Meteor(canvas, ctx, 0),
         new Meteor(canvas, ctx, 1)
+      ]
+    : [
+        new Meteor(canvas, ctx, 0),
+        new Meteor(canvas, ctx, 1),
+        new Meteor(canvas, ctx, 2),
+        new Meteor(canvas, ctx, 3)
       ];
 
   // FPS CONTROLADO
@@ -49,7 +57,7 @@ export function initGalaxyAnimation() {
 
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-    //  estrelas
+    // ⭐ estrelas
     stars.forEach(star => {
       star.update(time);
       star.draw(ctx);
