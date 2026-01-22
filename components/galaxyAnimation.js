@@ -1,6 +1,4 @@
-// ========== ANIMAÇÃO GALÁXIA ==========
 import { Star } from "./Star.js";
-import { Nebula } from "./Nebula.js";
 import { Meteor } from "./Meteor.js";
 
 export function initGalaxyAnimation() {
@@ -8,73 +6,85 @@ export function initGalaxyAnimation() {
   if (!canvas) return;
 
   const ctx = canvas.getContext("2d");
+  let animationId;
+  let isVisible = true;
 
-  // Responsividade
-  function resizeCanvas() {
+  function resize() {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
   }
+  resize();
+  window.addEventListener("resize", resize);
 
-  window.addEventListener("resize", resizeCanvas);
-  resizeCanvas();
+  const isMobile = window.innerWidth < 768;
 
-  // Quantidade de estrelas baseada no tamanho da tela
-  const starsCount = Math.min(
-    150,
-    Math.floor((canvas.width * canvas.height) / 4000)
-  );
-
-  // Paleta de cores
-  const colors = [
-    "rgba(255, 255, 255, 0.9)", // Branco
-    "rgba(200, 220, 255, 0.8)", // Azul claro
-    "rgba(255, 240, 220, 0.7)", // Amarelo suave
-    "rgba(220, 200, 255, 0.6)", // Roxo suave
-  ];
-
-  // Criar elementos
+  // ⭐ ESTRELAS
   const stars = Array.from(
-    { length: starsCount },
-    () => new Star(canvas, colors)
+    { length: isMobile ? 80 : 160 },
+    () => new Star(canvas)
   );
-  const nebulas = Array.from({ length: 3 }, () => new Nebula(canvas));
-  const meteors = Array.from({ length: 3 }, () => new Meteor(canvas));
 
-  // Função de animação
-  function animate() {
+  // ☄ METEOROS (controlados)
+  const meteors = isMobile
+    ? [new Meteor(canvas, ctx, 0)]
+    : [
+        new Meteor(canvas, ctx, 0),
+        new Meteor(canvas, ctx, 1)
+      ];
+
+  // FPS CONTROLADO
+  const FPS = 30;
+  const interval = 1000 / FPS;
+  let lastTime = 0;
+
+  function animate(time) {
+    if (!isVisible) return;
+
+    if (time - lastTime < interval) {
+      animationId = requestAnimationFrame(animate);
+      return;
+    }
+
+    lastTime = time;
+
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-    nebulas.forEach((nebula) => {
-      nebula.update();
-      nebula.draw(ctx);
-    });
-
-    stars.forEach((star) => {
-      star.update();
+    //  estrelas
+    stars.forEach(star => {
+      star.update(time);
       star.draw(ctx);
     });
 
-    meteors.forEach((meteor) => {
-      meteor.update();
+    // ☄ meteoros
+    meteors.forEach(meteor => {
+      meteor.update(time);
       meteor.draw(ctx);
     });
 
-    ctx.globalAlpha = 1;
-    requestAnimationFrame(animate);
+    animationId = requestAnimationFrame(animate);
   }
 
-  animate();
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      isVisible = entry.isIntersecting;
 
-  // Observer para performance
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        canvas.style.opacity = entry.isIntersecting ? "1" : "0";
-      });
-    },
-    { threshold: 0.1 }
-  );
+      if (isVisible) {
+        lastTime = performance.now();
+        animate(lastTime);
+      } else {
+        cancelAnimationFrame(animationId);
+      }
+    });
+  });
 
   observer.observe(canvas);
+  animate(0);
+
+  return {
+    destroy() {
+      cancelAnimationFrame(animationId);
+      observer.disconnect();
+      window.removeEventListener("resize", resize);
+    }
+  };
 }
-// ========== /ANIMAÇÃO GALÁXIA ==========
