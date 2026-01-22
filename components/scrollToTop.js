@@ -3,13 +3,19 @@ export function initScrollToTop() {
   const scrollToTopBtn = document.getElementById("scrollToTop");
   if (!scrollToTopBtn) return;
 
-  window.addEventListener("scroll", () => {
-    if (window.scrollY > 300) {
-      scrollToTopBtn.classList.add("show");
-    } else {
-      scrollToTopBtn.classList.remove("show");
-    }
-  });
+  function toggleScrollTopButton() {
+  const isMobile = window.innerWidth < 768;
+  const scrolled = window.scrollY > 300;
+
+  if (isMobile && scrolled) {
+    scrollToTopBtn.classList.add("show");
+  } else {
+    scrollToTopBtn.classList.remove("show");
+  }
+}
+
+  window.addEventListener("scroll", toggleScrollTopButton);
+  window.addEventListener("resize", toggleScrollTopButton);
 
   scrollToTopBtn.addEventListener("click", (e) => {
     e.preventDefault();

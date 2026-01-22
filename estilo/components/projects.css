@@ -1,394 +1,172 @@
-/* ========== PROJETOS - TEMA AZUL ESCURO GALÁXIA ========== */
+/* ========== PROJETOS | GALAXY MINIMAL ========== */
 #projetos {
   padding: 4rem 0;
-  position: relative;
-  overflow: hidden;
+  
 }
 
-#projetos::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: 
-    radial-gradient(2px 2px at 20% 30%, white, transparent),
-    radial-gradient(2px 2px at 60% 70%, white, transparent),
-    radial-gradient(1px 1px at 50% 50%, white, transparent),
-    radial-gradient(1px 1px at 80% 10%, white, transparent),
-    radial-gradient(2px 2px at 90% 60%, white, transparent);
-  background-size: 200% 200%;
-  opacity: 0.3;
-  pointer-events: none;
-  animation: stars 200s linear infinite;
-}
-
-@keyframes stars {
-  from { transform: translateY(0); }
-  to { transform: translateY(-2000px); }
+/* ===== TÍTULOS ===== */
+.DivTituloProjetos {
+  text-align: center;
+  margin-bottom: 3rem;
 }
 
 .titulo-projetos {
-  background: linear-gradient(135deg, #60a5fa 0%, #3b82f6 30%, #2563eb 60%, #1e40af 100%);
+  font-size: 2.8rem;
+  font-weight: 800;
+  letter-spacing: 2px;
+  background: linear-gradient(135deg, #60a5fa, #2563eb);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  background-clip: text;
-  font-weight: 900;
-  font-size: 3em;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  margin-bottom: 30px;
-  position: relative;
-  display: inline-block;
-  filter: drop-shadow(0 0 30px rgba(59, 130, 246, 0.6)) drop-shadow(0 0 60px rgba(37, 99, 235, 0.4));
-  animation: glow-title 3s ease-in-out infinite alternate;
-}
-
-.DivTituloProjetos {
-  text-align: center;
-  margin-bottom: 20px;
-}
-
-@keyframes glow-title {
-  from { filter: drop-shadow(0 0 20px rgba(59, 130, 246, 0.4)) drop-shadow(0 0 40px rgba(37, 99, 235, 0.3)); }
-  to { filter: drop-shadow(0 0 40px rgba(59, 130, 246, 0.8)) drop-shadow(0 0 80px rgba(37, 99, 235, 0.5)); }
 }
 
 .subtitulo-projetos {
-  background: linear-gradient(90deg, #3b82f6, #2563eb, #1d4ed8, #1e40af, #3b82f6);
-  background-size: 200% 100%;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  letter-spacing: 3px;
-  font-size: 2.5rem;
-  border-bottom: 2px solid rgba(59, 130, 246, 0.4);
-  padding-bottom: 10px;
-  margin-top: 40px;
-  position: relative;
-  filter: drop-shadow(0 0 20px rgba(59, 130, 246, 0.6));
-  animation: gradient-shift 5s ease infinite;
+  font-size: 1.8rem;
+  margin-top: 3rem;
+  color: #93c5fd;
+  border-bottom: 2px solid rgba(59,130,246,.4);
+  display: inline-block;
+  padding-bottom: 6px;
 }
 
-@keyframes gradient-shift {
-  0%, 100% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-}
-
-.subtitulo-projetos::after {
-  content: "";
-  position: absolute;
-  bottom: -2px;
-  left: 0;
-  width: 120px;
-  height: 2px;
-  background: linear-gradient(90deg, #3b82f6, #2563eb, #1e40af);
-  box-shadow: 0 0 15px rgba(59, 130, 246, 1), 0 0 30px rgba(37, 99, 235, 0.6);
-  animation: line-glow 2s ease-in-out infinite alternate;
-}
-
-@keyframes line-glow {
-  from { box-shadow: 0 0 10px rgba(59, 130, 246, 0.8), 0 0 20px rgba(37, 99, 235, 0.4); }
-  to { box-shadow: 0 0 20px rgba(59, 130, 246, 1), 0 0 40px rgba(37, 99, 235, 0.8); }
-}
-
+/* ===== CARDS ===== */
 .card-projeto {
-  border: none;
-  border-radius: 20px;
+  background: linear-gradient(145deg, #050b1e, #0b1433);
+  border-radius: 18px;
   overflow: hidden;
-  box-shadow: 
-    0 10px 40px rgba(0, 0, 0, 0.6),
-    0 0 30px rgba(59, 130, 246, 0.3),
-    inset 0 1px 0 rgba(59, 130, 246, 0.2);
-  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1);
-  margin-bottom: 2rem;
-  background: linear-gradient(
-    145deg,
-    rgba(7, 15, 35, 0.95) 0%,
-    rgba(10, 20, 50, 0.9) 25%,
-    rgba(15, 30, 70, 0.9) 50%,
-    rgba(10, 20, 50, 0.9) 75%,
-    rgba(7, 15, 35, 0.95) 100%
-  );
-  backdrop-filter: blur(20px);
-  border: 1px solid rgba(59, 130, 246, 0.3);
+  border: 1px solid rgba(59,130,246,.25);
+  transition: transform .3s ease, box-shadow .3s ease;
   height: 100%;
-  position: relative;
-}
-
-.card-projeto::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 3px;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(59, 130, 246, 0.9),
-    rgba(37, 99, 235, 0.9),
-    rgba(29, 78, 216, 0.9),
-    transparent
-  );
-  opacity: 0;
-  transition: opacity 0.4s ease;
-}
-
-.card-projeto::after {
-  content: "";
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 0;
-  height: 0;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(59, 130, 246, 0.3), transparent 70%);
-  opacity: 0;
-  transition: all 0.6s ease;
-  pointer-events: none;
-}
-
-.card-projeto:hover::before {
-  opacity: 1;
-  animation: border-flow 2s linear infinite;
-}
-
-@keyframes border-flow {
-  0% { background-position: 0% 50%; }
-  100% { background-position: 200% 50%; }
-}
-
-.card-projeto:hover::after {
-  width: 300px;
-  height: 300px;
-  opacity: 1;
 }
 
 .card-projeto:hover {
-  transform: translateY(-15px) scale(1.02);
-  box-shadow: 
-    0 25px 60px rgba(0, 0, 0, 0.8),
-    0 0 50px rgba(59, 130, 246, 0.5),
-    0 0 100px rgba(37, 99, 235, 0.3),
-    inset 0 1px 0 rgba(59, 130, 246, 0.4);
-  border-color: rgba(59, 130, 246, 0.8);
+  transform: translateY(-8px);
+  box-shadow: 0 15px 40px rgba(59,130,246,.25);
 }
 
+/* ===== IMAGEM ===== */
 .img-projeto {
   width: 100%;
-  height: 250px;
+  height: 230px;
   object-fit: cover;
-  transition: all 0.5s ease;
-  border-bottom: 3px solid transparent;
-  border-image: linear-gradient(90deg, #3b82f6, #2563eb, #1e40af, #3b82f6) 1;
-  filter: brightness(0.7) contrast(1.1);
+  filter: brightness(.85);
+  transition: transform .3s ease, filter .3s ease;
+}
+
+@media (min-width: 992px) {
+.img-projeto {
+  width: 100%;
+  height: 260px;
+  object-fit: cover;
+  object-position: center;
+}
 }
 
 .card-projeto:hover .img-projeto {
-  transform: scale(1.08);
-  filter: brightness(1) contrast(1.2);
+  transform: scale(1.05);
+  filter: brightness(1);
+}
+
+/* ===== CONTEÚDO ===== */
+.legenda-projeto {
+  padding: 1.6rem;
+  color: #e5e7eb;
 }
 
 .card-titulo {
+  font-size: 1.3rem;
   font-weight: 700;
-  background: linear-gradient(135deg, #dbeafe, #93c5fd, #60a5fa);
+  margin-bottom: 1rem;
+  background: linear-gradient(90deg, #dbeafe, #60a5fa);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  background-clip: text;
-  margin: 1rem 0;
-  position: relative;
-  padding-bottom: 10px;
-  filter: drop-shadow(0 0 15px rgba(59, 130, 246, 0.6));
 }
 
-.card-titulo::after {
-  content: "";
-  position: absolute;
-  width: 60px;
-  height: 3px;
-  background: linear-gradient(90deg, #3b82f6, #2563eb, #1e40af);
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  border-radius: 3px;
-  box-shadow: 0 0 15px rgba(59, 130, 246, 0.9), 0 0 30px rgba(37, 99, 235, 0.5);
-}
-
-.legenda-projeto {
-  background: linear-gradient(
-    135deg,
-    rgba(7, 15, 35, 0.95) 0%,
-    rgba(15, 30, 70, 0.95) 25%,
-    rgba(20, 40, 90, 0.95) 50%,
-    rgba(15, 30, 70, 0.95) 75%,
-    rgba(7, 15, 35, 0.95) 100%
-  );
-  color: #dbeafe;
-  padding: 1.8rem;
-  position: relative;
-  border-top: 3px solid rgba(59, 130, 246, 0.6);
-  backdrop-filter: blur(15px);
-}
-
-.legenda-projeto::before {
-  content: "⎯⎯⎯ DETAILS ⎯⎯⎯";
-  position: absolute;
-  top: -12px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: linear-gradient(135deg, #0f172a, #1e3a8a, #1e40af);
-  color: #dbeafe;
-  font-weight: bold;
-  font-size: 0.75rem;
-  padding: 4px 20px;
-  border-radius: 20px;
-  box-shadow: 
-    0 4px 20px rgba(59, 130, 246, 0.6),
-    0 0 30px rgba(37, 99, 235, 0.4),
-    inset 0 1px 0 rgba(96, 165, 250, 0.3);
-  border: 1px solid rgba(59, 130, 246, 0.7);
-}
-
+/* ===== TEXTO ===== */
 .legenda-projeto p {
-  position: relative;
-  padding-left: 25px;
-  margin-bottom: 0;
-  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.6);
+  font-size: .95rem;
+  line-height: 1.6;
+  color: #c7d2fe;
 }
 
-.legenda-projeto p::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 5px;
-  height: 80%;
-  width: 3px;
-  background: linear-gradient(180deg, #3b82f6, #2563eb, #1e40af);
-  border-radius: 3px;
-  box-shadow: 0 0 10px rgba(59, 130, 246, 0.9), 0 0 20px rgba(37, 99, 235, 0.5);
-}
-
-.legenda-projeto ul li {
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
-}
-
-.legenda-projeto ul li i {
-  color: #60a5fa;
-  filter: drop-shadow(0 0 8px rgba(59, 130, 246, 0.9));
-}
-
+/* ===== TECNOLOGIAS ===== */
 .tecnologias {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
-  margin-top: 15px;
-  justify-content: center;
+  margin-top: 1rem;
 }
 
 .tecnologia-badge {
-  background: linear-gradient(
-    135deg,
-    rgba(15, 30, 70, 0.9),
-    rgba(20, 40, 90, 0.9),
-    rgba(25, 50, 110, 0.9)
-  );
+  font-size: .7rem;
   padding: 6px 14px;
   border-radius: 20px;
-  font-size: 0.75rem;
-  font-weight: 600;
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(59, 130, 246, 0.5);
-  color: #dbeafe;
-  transition: all 0.3s ease;
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.5), 0 0 15px rgba(59, 130, 246, 0.3);
-  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
-  position: relative;
-  overflow: hidden;
+  background: rgba(59,130,246,.15);
+  color: #bfdbfe;
+  border: 1px solid rgba(59,130,246,.4);
+  transition: background .3s ease, transform .3s ease;
 }
 
-.tecnologia-badge::before {
+.tecnologia-badge:hover {
+  background: rgba(59,130,246,.3);
+  transform: translateY(-2px);
+}
+
+/* ===== TEXTO AUXILIAR ===== */
+.text-secondary {
+  color: #94a3b8 !important;
+  font-size: .9rem;
+  font-style: italic;
+}
+
+.project-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.8rem;
+  padding: 1rem 2.5rem;
+  background: linear-gradient(135deg, #064283, #0056b3);
+  color: white;
+  text-decoration: none;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 1.05rem;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 123, 255, 0.3);
+}
+
+.project-button::before {
   content: "";
   position: absolute;
   top: 0;
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(96, 165, 250, 0.3), transparent);
-  transition: left 0.5s ease;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
+  transition: left 0.6s ease;
 }
 
-.tecnologia-badge:hover::before {
+.project-button:hover::before {
   left: 100%;
 }
 
-.tecnologia-badge:hover {
-  background: linear-gradient(
-    135deg,
-    rgba(25, 50, 110, 1),
-    rgba(30, 60, 130, 1),
-    rgba(35, 70, 150, 1)
-  );
-  border-color: rgba(96, 165, 250, 0.8);
+.project-button:hover {
   transform: translateY(-3px);
-  box-shadow: 0 6px 20px rgba(59, 130, 246, 0.6), 0 0 30px rgba(37, 99, 235, 0.4);
+  box-shadow: 0 15px 40px rgba(0, 123, 255, 0.5),
+    0 0 20px rgba(96, 165, 250, 0.3);
+  color: white;
+  background: linear-gradient(135deg, #0056b3, #003d82);
 }
 
-.tecnologia-badge i {
-  filter: drop-shadow(0 0 5px rgba(96, 165, 250, 0.8));
+.project-button i {
+  transition: transform 0.3s ease;
 }
 
-.text-secondary {
-  color: #94a3b8 !important;
-  font-style: italic;
-  font-size: 1.1rem;
-  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.7);
-}
-
-/* ========== Responsive Desktop ========== */
-@media screen and (min-width: 800px) {
-  .Felipe-Duarte {
-    font-size: 7.5em;
-    letter-spacing: 0.05em;
-    font-weight: 900;
-    color: transparent;
-    -webkit-text-stroke: 2px #a6a6a6;
-  }
-
-  .meu-nome-e {
-    font-size: 2em;
-    font-weight: 500;
-  }
-
-  span#icons-glt {
-    font-size: 45px;
-    margin: 0 15px;
-  }
-}
-
-/* ========== Responsive Mobile ========== */
-@media screen and (max-width: 400px) {
-  .Felipe-Duarte {
-    font-size: 3.2em;
-    letter-spacing: 0.05em;
-    -webkit-text-stroke: 1.1px #a6a6a6;
-    transform: scaleY(1.6);
-  }
-}
-
-/* ========== Responsive Tablet ========== */
-@media screen and (min-width: 800px) and (max-width: 1200px) {
-  .size-developer {
-    font-size: 4.5em;
-  }
-
-  p#presentation {
-    font-size: 1.1em;
-  }
-
-  span#icons-glt {
-    font-size: 32px;
-  }
+.project-button:hover i {
+  transform: translateX(3px);
 }
