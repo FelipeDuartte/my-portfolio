@@ -25,17 +25,17 @@ export class Meteor {
 
   // Configurações de animação
   static CONFIG = {
-    ICON_SIZE: 42,
-    TRAIL_LENGTH: 140,
-    BASE_SPEED: 900,
+    ICON_SIZE: 38,
+    TRAIL_LENGTH: 120,
+    BASE_SPEED: 850,
     TRAIL_ANGLE: 0.35,
-    FADE_SPEED: 0.6,
-    LINE_WIDTH: 2.5,
-    SHADOW_BLUR: 10,
-    ICON_SHADOW_BLUR: 25,
-    MIN_WAIT_TIME: 4000,
-    MAX_WAIT_TIME: 8000,
-    INITIAL_DELAY_MULTIPLIER: 4000
+    FADE_SPEED: 0.7,
+    LINE_WIDTH: 2,
+    SHADOW_BLUR: 8,
+    ICON_SHADOW_BLUR: 15,
+    MIN_WAIT_TIME: 5000,
+    MAX_WAIT_TIME: 10000,
+    INITIAL_DELAY_MULTIPLIER: 5000
   };
 
   static imagesLoaded = false;
@@ -147,10 +147,10 @@ export class Meteor {
     this.alpha = 1;
     this.active = false;
 
-    // Tempo de espera antes de aparecer - aumentado para evitar sobreposição
+    // Tempo de espera aumentado para evitar sobrecarga
     this.waitTime = initial 
-      ? this.baseDelay + 2000
-      : Meteor.CONFIG.MIN_WAIT_TIME + Math.random() * (Meteor.CONFIG.MAX_WAIT_TIME - Meteor.CONFIG.MIN_WAIT_TIME) + 2000;
+      ? this.baseDelay + 3000
+      : Meteor.CONFIG.MIN_WAIT_TIME + Math.random() * (Meteor.CONFIG.MAX_WAIT_TIME - Meteor.CONFIG.MIN_WAIT_TIME) + 3000;
 
     this.lastTime = performance.now();
     this.#selectRandomTech();
@@ -224,6 +224,9 @@ export class Meteor {
     ctx.moveTo(0, 0);
     ctx.lineTo(this.trailEndX, this.trailEndY);
     ctx.stroke();
+    
+    // Resetar shadow para não afetar o ícone
+    ctx.shadowBlur = 0;
   }
 
   /**
@@ -232,13 +235,12 @@ export class Meteor {
    */
   #drawIcon(ctx) {
     ctx.shadowBlur = Meteor.CONFIG.ICON_SHADOW_BLUR;
-    ctx.shadowColor = 'rgba(255, 255, 255, 1)';
+    ctx.shadowColor = 'rgba(255, 255, 255, 0.8)';
     
-    // Desenhar ícone duas vezes para efeito de brilho
+    // Desenhar ícone apenas uma vez (performance)
     const size = Meteor.CONFIG.ICON_SIZE;
     const offset = -this.halfIconSize;
     
-    ctx.drawImage(this.image, offset, offset, size, size);
     ctx.drawImage(this.image, offset, offset, size, size);
   }
 
