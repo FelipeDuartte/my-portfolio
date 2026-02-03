@@ -12,11 +12,6 @@ export class Meteor {
       color: 'rgba(240, 219, 79, 0.8)'
     },
     {
-      name: 'MySQL',
-      url: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg',
-      color: 'rgba(0, 117, 143, 0.8)'
-    },
-    {
       name: 'Python',
       url: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg',
       color: 'rgba(255, 212, 59, 0.8)'
