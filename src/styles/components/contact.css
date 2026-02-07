@@ -50,6 +50,7 @@
   color: #f8f9fa;
   font-size: 1em;
   transition: box-shadow 0.3s ease;
+  font-family: inherit;
 }
 
 .form-contato input:focus,
@@ -67,6 +68,7 @@
   font-weight: bold;
   cursor: pointer;
   transition: background 0.3s ease;
+  width: 100%;
 }
 
 .form-contato button:hover {
@@ -77,4 +79,11 @@
   margin: 5px 0;
   font-size: 1.1em;
 }
+
+#feedback {
+  margin-top: 20px;
+  color: #60a5fa;
+  font-weight: bold;
+}
+
 /* ========== /CONTATO ========== */

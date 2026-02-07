@@ -1,15 +1,4 @@
 /* ========== ANIMAÇÕES GERAIS ========== */
-.hidden {
-  opacity: 0;
-  filter: blur(15px);
-  transition: opacity 0.9s ease-out, filter 0.8s ease-out;
-}
-
-.show {
-  opacity: 1;
-  filter: blur(0);
-}
-
 @keyframes iconPulse {
   0% {
     transform: scale(1);
@@ -42,4 +31,5 @@
     height: 4px;
   }
 }
+
 /* ========== /ANIMAÇÕES GERAIS ========== */

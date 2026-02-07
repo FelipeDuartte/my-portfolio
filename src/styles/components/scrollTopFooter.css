@@ -11,7 +11,10 @@
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   display: none;
   z-index: 999;
-  transition: background-color 0.3s;
+  transition:
+    background-color 0.3s,
+    opacity 0.3s;
+  opacity: 0;
 }
 
 .scroll-to-top.show {
@@ -36,4 +39,5 @@
   color: #f39c12;
   font-weight: bold;
 }
+
 /* ========== /SCROLL TO TOP & FOOTER ========== */

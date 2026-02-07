@@ -3,6 +3,55 @@
   padding: 6rem 0;
 }
 
+/* ===== Nav ===== */
+.nav-projetos {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin: 2rem 0;
+}
+
+.nav-projetos button {
+  background: none;
+  border: none;
+  color: #aaa;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  position: relative;
+  padding: 0.5rem 0;
+  transition: color 0.3s ease;
+}
+
+
+.nav-projetos button::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  width: 0%;
+  height: 2px;
+  background: #0d6efd; 
+  transition: width 0.3s ease;
+}
+
+.nav-projetos button:hover {
+  color: #fff;
+}
+
+.nav-projetos button:hover::after {
+  width: 100%;
+}
+
+
+.nav-projetos button.active {
+  color: #0d6efd;
+}
+
+.nav-projetos button.active::after {
+  width: 100%;
+}
+
 /* ===== TÍTULOS ===== */
 .DivTituloProjetos {
   text-align: center;
@@ -64,7 +113,9 @@
     rgba(96, 165, 250, 0.4),
     rgba(0, 123, 255, 0.2)
   );
-  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
   mask-composite: exclude;
   opacity: 0;
@@ -249,6 +300,6 @@
   .legenda-projeto {
     padding: 1.5rem;
   }
-
-
 }
+
+/* ========== /PROJETOS ========== */
